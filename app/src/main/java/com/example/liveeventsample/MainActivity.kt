@@ -9,8 +9,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        // Display first page
+        transitNextPage(1)
+    }
+
+    fun transitNextPage(pageNo: Int) {
         supportFragmentManager.commit {
-            replace(R.id.fragment_container, MainFragment.newInstance())
+            replace(R.id.fragment_container, MainFragment.newInstance(pageNo), MainFragment.TAG)
+            addToBackStack(MainFragment.TAG)
         }
     }
 }
