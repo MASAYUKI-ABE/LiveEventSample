@@ -40,7 +40,11 @@ class MainFragment : Fragment() {
         title.text = "page: $pageNo"
 
         // 実態がLiveEventなので、値が入っていた時に、observeし直しても通知されない。
-        // (重要) 値がsetされたときは通知される。
+
+        // このように、observeより先に値をsetしても通知されない
+        // viewModel.nextPage()
+
+        // observe後は、値がsetされるたびに通知される
         viewModel.transitEvent.observe(viewLifecycleOwner) {
             Log.d(TAG, "transit event triggered")
             (activity as? MainActivity)?.transitNextPage(pageNo + 1)
